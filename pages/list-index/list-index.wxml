@@ -1,0 +1,2 @@
+<!--pages/list-index/list-index.wxml-->
+<text>{{lists[0].should_do[1].content}}</text>

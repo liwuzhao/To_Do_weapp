@@ -1,8 +1,9 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/about/about"
+    "pages/about/about",
+    "pages/list-new/list-new",
+    "pages/list-index/list-index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -16,6 +17,10 @@
     "borderStyle": "white",
     "backgroundColor": "#000",
     "list": [
+      {
+        "text": "lists",
+        "pagePath": "pages/list-index/list-index"
+      },
       {
         "text": "index1",
         "pagePath": "pages/index/index"

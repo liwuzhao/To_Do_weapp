@@ -1,4 +1,4 @@
-const auth = require('./utils/auth');
+const auth = require('./libs/auth');
 
 App({
   login(options) {

@@ -1,2 +1,23 @@
 <!--pages/list-new/list-new.wxml-->
-<text>pages/list-new/list-new.wxml</text>
+<form bindsubmit="onFormSubmit" bindreset="formReset">
+
+  <view class="section">
+    <view class="section__title">应做一:</view>
+    <input type="text" name="should_do_content"></input>
+  </view>
+ 
+  <!-- <view class="section">
+    <view class="section__title">应做二:</view>
+    <input type="text" name="should_do_second"></input>
+  </view>
+
+   <view class="section">
+    <view class="section__title">应做三:</view>
+    <input type="text" name="should_do_third"></input>
+  </view>     -->
+
+  <view class="btn-area">
+    <button formType="submit">Submit</button>
+    <button formType="reset">Reset</button>
+  </view>
+</form>

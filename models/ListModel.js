@@ -1,24 +1,28 @@
 const mobx = require('../vendor/mobx');
 const ShouldDoModel = require('./ShouldDoModel').ShouldDoModel;
+const utils = require('../libs/utils');
 
-const ListModel = function(list){
+const ListModel = function (list) {
   this.id = list.id;
 
-  mobx.extendObservable(this,{
+  mobx.extendObservable(this, {
     list_date: list.list_date,
-    shouldDo: new ShouldDoModel(list.shouldDo || {})
+    should_do: new ShouldDoModel(list.should_do || {})
   });
 
-  this.setShouldDo = function(shouldDo){
-    this.shouldDo = shouldDo;
+  this.setList_date = function (list_date) {
+    this.list_date = list_date;
   };
 
-  this.setList_date = function (list_date){
-    this.list_date = list_date;
-  }
+  this.setShouldDo = function (should_do) {
+    this.should_do = new ShouldDoModel(should_do)
+  };
 
+  this.toJS = function () {
+    return mobx.toJS(this);
+  };
 }
 
 module.exports = {
   ListModel: ListModel
-}
+};

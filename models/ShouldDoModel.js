@@ -1,13 +1,13 @@
 const mobx = require('../vendor/mobx');
 
-const ShouldDoModel = function(shouldDo){
+const ShouldDoModel = function (shouldDo) {
   this.id = shouldDo.id
 
-  mobx.extendObservable(this,{
+  mobx.extendObservable(this, {
     content: shouldDo.content
   });
 
-  this.setContent = function(content){
+  this.setContent = function (content) {
     this.content = content;
   };
 }

@@ -3,20 +3,15 @@
 const api = require('../../libs/api');
 const utils = require('../../libs/utils');
 const ListModel = require('../../models/ListModel').ListModel;
+
 const app = getApp();
 
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-    list: {},
-    list_date: ""
+    list: {}
   },
 
-
-  onLoad: function (options) {
+  onLoad() {
     app.login({});
     let now = new Date;
     now.setHours(12);
@@ -25,36 +20,52 @@ Page({
 
     let list_date = utils.formatDate(now);
 
-    var list = new ListModel({ list_date: list_date });
-    
+    var list = new ListModel({ list_date: list_date});
+
     this.setData({
       list: list,
-      list_date: list_date
+    });
+  },
+
+
+  onFormSubmit(e) {
+    var that = this;
+
+    var should_do_content = e.detail.value.should_do_content;
+
+    this.data.list.setShouldDo({
+      content: should_do_content
     });
 
+    let list = that.data.list.toJS();
+
+    this.setData({
+      list: list,
+    });
+
+    api.post({
+      path: '/lists',
+      data: {
+        list: list
+      },
+      success: () => {
+        wx.switchTab({
+          url: '/pages/list-index/list-index'
+        });
+        wx.showToast({
+          title: '成功记录',
+          icon: 'success',
+          duration: 2000
+        });
+      }
+    })
   },
 
-
-
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  resetData() {
+    this.setData({
+      list: {}
+    });
+    wx.stopPullDownRefresh();
   }
+
 })

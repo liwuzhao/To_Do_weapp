@@ -1,9 +1,9 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/about/about",
     "pages/list-new/list-new",
-    "pages/list-index/list-index"
+    "pages/list-index/list-index",
+    "pages/index/index",        
+    "pages/about/about"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -28,6 +28,10 @@
       {
         "text": "about",
         "pagePath": "pages/about/about"
+      },
+      {
+        "text": "new-list",
+        "pagePath": "pages/list-new/list-new"
       }
     ]
   }

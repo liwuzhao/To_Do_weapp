@@ -1,2 +1,9 @@
-<!--pages/list-index/list-index.wxml-->
-<text>{{lists[0].should_do[1].content}}</text>
+<block wx:for="{{lists}}" wx:for-item="list" wx:key="id">
+  <view>日期：{{list.list_date}}</view>
+  <view>应做：{{list.should_do.content}}
+  <!-- <view wx:for="{{list.should_do}}" wx:for-item="should_do" wx:key="id">
+  {{should_do.content}}
+  </view> -->
+  </view>
+</block>
+

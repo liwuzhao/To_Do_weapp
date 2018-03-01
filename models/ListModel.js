@@ -7,7 +7,8 @@ const ListModel = function (list) {
 
   mobx.extendObservable(this, {
     list_date: list.list_date,
-    should_do: new ShouldDoModel(list.should_do || {})
+    // should_do: new ShouldDoModel(list.should_do || {})
+    should_dos: []
   });
 
   this.setList_date = function (list_date) {
@@ -15,7 +16,7 @@ const ListModel = function (list) {
   };
 
   this.setShouldDo = function (should_do) {
-    this.should_do = new ShouldDoModel(should_do)
+    this.should_dos.push(new ShouldDoModel(should_do))
   };
 
   this.toJS = function () {

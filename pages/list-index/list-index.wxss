@@ -1,1 +1,6 @@
 /* pages/list-index/list-index.wxss */
+.list_form {
+  margin-bottom: 15px;
+  margin-left: 25%;
+  margin-right: 10%;
+}

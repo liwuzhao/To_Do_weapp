@@ -10,7 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    lists: {},
+    lists: [],
   },
 
   /**
@@ -84,5 +84,41 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+  
+  changeStatus(e) {
+    var that = this;
+
+    let lists = that.data.lists;
+    let shouldDoId = e.currentTarget.dataset.shouldDoId;
+
+    // Find_list_index
+    var temp = 0;
+    let listIndex = lists.findIndex(function (e){
+      e.should_dos.findIndex(function (e){
+        if(e.id == shouldDoId)
+        {
+            temp = 1;
+            return ;
+        }    
+      })
+      if(temp == 1)
+       return e;
+    })
+
+    // Find_list_id
+    let listId = lists[listIndex];
+
+
+    api.put({
+      path: '/lists/' + listId + '/should_dos/' + shouldDoId,
+      success: (res) => {
+        this.FetchDataFromRemoteServer();
+      }
+    })
+
+
+
   }
 })

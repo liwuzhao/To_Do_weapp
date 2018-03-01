@@ -4,12 +4,17 @@ const ShouldDoModel = function (shouldDo) {
   this.id = shouldDo.id
 
   mobx.extendObservable(this, {
-    content: shouldDo.content
+    content: shouldDo.content,
+    status: shouldDo.status
   });
 
   this.setContent = function (content) {
     this.content = content;
   };
+
+  this.setStatus = function (status){
+    this.status = status;
+  }
 }
 
 module.exports = {

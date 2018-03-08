@@ -1,4 +1,7 @@
 /**app.wxss**/
+
+@import 'components/components.wxss';
+
 .container {
   height: 100%;
   display: flex;
@@ -8,3 +11,36 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+
+
+page {
+  background-color: #f6f6f6;
+  line-height: 1.6;
+  font-size: 30rpx;
+  font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+}
+
+
+.page__bg {
+  min-height: 100vh;
+}
+
+.user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30%;
+  margin-bottom: 30rpx;
+  padding: 42rpx 0;
+}
+
+.user-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
+
+.user-nickname {
+  margin-top: 30rpx;
+  font-size: 28rpx;
+}

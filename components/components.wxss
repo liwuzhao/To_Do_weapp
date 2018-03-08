@@ -1,0 +1,5 @@
+@import './list-card/list-card.wxss';
+
+.done{
+  text-decoration:line-through
+}

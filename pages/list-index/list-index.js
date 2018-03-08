@@ -11,17 +11,29 @@ Page({
    */
   data: {
     lists: [],
+    today_list: {},
+    activeTabIndex: 0,
+    tabs: ['今日', '历史'],    
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
     var that = this;
     this.FetchDataFromRemoteServer();
   },
 
+  onShow: function () {
+    this.FetchDataFromRemoteServer();
+  },
+
   FetchDataFromRemoteServer: function(){
+    if (this.data.activeTabIndex == 0) {
+      this.loadTodayList();
+    } else if (this.data.activeTabIndex == 1) {
+      this.loadHistoryList();
+    }
+  },
+
+  loadHistoryList: function(){
     var that = this;
     api.get({
       path: '/lists',
@@ -30,39 +42,25 @@ Page({
           'lists': res.data.lists
         })
       },
-      complete: () =>{
+      complete: () => {
         wx.stopPullDownRefresh();
       }
     });
   },
 
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    this.FetchDataFromRemoteServer();
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
+  loadTodayList: function(){
+    var that = this;
+    api.get({
+      path: '/today_list',
+      success: (res) => {
+        that.setData({
+          'today_list': res.data
+        })
+      },
+      complete: () => {
+        wx.stopPullDownRefresh();
+      }
+    });
   },
 
   /**
@@ -86,8 +84,21 @@ Page({
   
   },
 
-  
-  changeStatus(e) {
+  tabClick: function(e) {
+    if (this.data.activeTabIndex == e.currentTarget.id) { return; }
+
+    this.setData({
+      'activeTabIndex': e.currentTarget.id
+    });
+
+    if (e.currentTarget.id == 0 ) {
+      this.loadTodayList();
+    } else if (e.currentTarget.id == 1) {
+      this.loadHistoryList();
+    }    
+  },
+
+  changeStatus: function(e) {
     var that = this;
 
     let lists = that.data.lists;
@@ -109,8 +120,6 @@ Page({
 
     // Find_list_id
     let listId = lists[listIndex];
-
-
     api.put({
       path: '/lists/' + listId + '/should_dos/' + shouldDoId,
       success: (res) => {

@@ -1,15 +1,16 @@
 {
   "pages": [
-    "pages/list-index/list-index",        
+    "pages/list-index/list-index",
     "pages/list-new/list-new",
-    "pages/index/index",        
     "pages/about/about"
   ],
   "window": {
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "今天做什么",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#eeeeee",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
+    "enablePullDownRefresh": true
   },
   "tabBar": {
     "color": "#8d827c",
@@ -18,20 +19,16 @@
     "backgroundColor": "#000",
     "list": [
       {
-        "text": "lists",
+        "text": "清单",
         "pagePath": "pages/list-index/list-index"
       },
       {
-        "text": "index1",
-        "pagePath": "pages/index/index"
-      },
-      {
-        "text": "about",
-        "pagePath": "pages/about/about"
-      },
-      {
-        "text": "new-list",
+        "text": "写清单",
         "pagePath": "pages/list-new/list-new"
+      },
+      {
+        "text": "我",
+        "pagePath": "pages/about/about"
       }
     ]
   }

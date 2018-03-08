@@ -1,0 +1,8 @@
+<template name="loading">
+  <view class="wux-toast-wrapper {{ animateCss }}" hidden="{{ !visible }}">
+    <view class="wux-toast">
+      <view class="wux-loading wux-icon_toast"></view>
+      <view class="wux-loading__content">{{ text }}</view>
+    </view>
+  </view>
+</template>

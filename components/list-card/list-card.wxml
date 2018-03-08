@@ -1,0 +1,11 @@
+<template name="list-card">
+    <view>日期：{{list.list_date}}</view>
+
+    <view class="checkbox" wx:for="{{list.should_dos}}" wx:for-item="should_do" wx:key="id">
+    <checkbox bindtap='changeStatus' checked='{{should_do.status == "完成" ? true : false}}'       
+              data-should-do-id = '{{should_do.id}}'
+              disabled = '{{should_do.status == "完成" ? true : false}}'>
+    </checkbox>
+    应做：{{should_do.content}}  
+    </view>
+</template>

@@ -1,5 +1,5 @@
 // pages/list-new/list-new.js
-
+const { $wuxLoading } = require('../../vendor/wux/wux');
 const api = require('../../libs/api');
 const utils = require('../../libs/utils');
 const ListModel = require('../../models/ListModel').ListModel;
@@ -8,7 +8,11 @@ const app = getApp();
 
 Page({
   data: {
-    list: {}
+    list: {},
+    has_today_list: false,
+    ui: {
+      submitting: false
+    }    
   },
 
   onLoad: function (options) {
@@ -16,7 +20,9 @@ Page({
   },
 
   onShow: function() {
-    let now = new Date;
+    this.set_has_today_list();
+
+    let now = new Date();
     now.setHours(12);
     now.setMinutes(0);
     now.setSeconds(0);
@@ -33,25 +39,33 @@ Page({
   onFormSubmit(e) {
     var that = this;
 
-    var should_do_first = e.detail.value.should_do_first;
-    var should_do_second = e.detail.value.should_do_second;
-    var should_do_third = e.detail.value.should_do_third;
+    // 判断是否今天创建过
+    if(this.data.has_today_list){
+      that.resetData(), 
+      wx.showModal({
+        title: '提示',
+        content: '今天已经创建了清单',
+        icon: 'success',
+        duration: 2000
+      })
+      return
+    };
 
+    if (that.isFormSubmitting()) { return; };
+    that.updateUiBeforeFormSubmit();
 
-    this.data.list.setShouldDo({
-      content: should_do_first,
-      status: "未完成"
-    });
+    var should_dos = [];
+    should_dos.push(e.detail.value.should_do_first);
+    should_dos.push(e.detail.value.should_do_second);
+    should_dos.push(e.detail.value.should_do_third);
 
-    this.data.list.setShouldDo({
-      content: should_do_second,
-      status: "未完成"
-    });
-
-    this.data.list.setShouldDo({
-      content: should_do_third,
-      status: "未完成"
-    });   
+    for (var i = 0; i < should_dos.length; i++) {
+      this.data.list.setShouldDo({
+        content: should_dos[i],
+        status: "未完成"
+      });
+    }
+    
     let list = that.data.list.toJS();
 
     this.setData({
@@ -65,6 +79,9 @@ Page({
       },
       success: () => {
         that.resetData();
+        this.setData({
+          has_today_list: true,
+        });
         wx.switchTab({
           url: '/pages/list-index/list-index'
         });
@@ -73,6 +90,9 @@ Page({
           icon: 'success',
           duration: 2000
         });
+      },
+      complete: () => {
+        that.updateUiAfterFormSubmit();
       }
     });
   },
@@ -82,6 +102,34 @@ Page({
       list: {}
     });
     wx.stopPullDownRefresh();
-  }
+  },
+
+  set_has_today_list(){
+    var that = this;
+    api.get({
+      path: '/today_list',
+      success: (res) => {
+        if(res.data.today_list){
+          that.setData({
+            'has_today_list': true
+          })
+        }
+      }
+    })
+  },
+
+  updateUiBeforeFormSubmit() {
+    this.setData({ 'ui.submitting': true });
+    $wuxLoading.show({ text: '发布中' });
+  },
+
+  updateUiAfterFormSubmit() {
+    $wuxLoading.hide();
+    this.setData({ 'ui.submitting': false });
+  },
+
+  isFormSubmitting() {
+    return this.data.ui.submitting;
+  },
 
 })

@@ -1,4 +1,5 @@
 <!--pages/list-new/list-new.wxml-->
+<view hidden=''>
 <form bindsubmit="onFormSubmit">
 
   <view class="section">
@@ -21,3 +22,4 @@
     <button formType="reset">Reset</button>
   </view>
 </form>
+</view>

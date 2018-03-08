@@ -1,21 +1,28 @@
+<import src="../../components/list-card/list-card.wxml"/>
+<import src="../../components/today-list-card/today-list-card.wxml"/>
+
 <view class="page">
-
-  <view class="page__bg">
-  
+  <view class="list-index-page-navbar">
+    <block wx:for="{{tabs}}" wx:key="*this">
+      <view id="{{index}}" bindtap="tabClick" class="list-index-page-navbar__item ">
+        <view class="list-index-page-navbar__title">{{item}}</view>
+        <view wx:if="{{activeTabIndex == index}}" class="list-index-page-navbar__slider">
+        </view>
+      </view>
+    </block>
   </view>
 
+  <view class='list-index-page'>
 
-  <view class="list_form" wx:for="{{lists}}" wx:for-item="list" wx:key="id">
-    <view>日期：{{list.list_date}}</view>
-
-    <view class="checkbox" wx:for="{{list.should_dos}}" wx:for-item="should_do" wx:key="id">
-    <checkbox bindtap='changeStatus' checked='{{should_do.status == "完成" ? true : false}}'       
-              data-should-do-id = '{{should_do.id}}'
-              disabled = '{{should_do.status == "完成" ? true : false}}'>
-    </checkbox>
-    应做：{{should_do.content}}  
+    <view class="list-form" hidden="{{activeTabIndex == 1}}">
+          <template is="today-list-card" data="{{today_list}}"/>
     </view>
+
+    <view class="list-form" hidden="{{activeTabIndex == 0}}">
+      <block wx:for="{{lists}}" wx:for-item="list" wx:key="id">
+          <template is="list-card" data="{{list}}"/>
+      </block>
+    </view>
+
   </view>
-
-
 </view>

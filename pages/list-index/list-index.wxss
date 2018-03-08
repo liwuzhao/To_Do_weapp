@@ -1,6 +1,51 @@
 /* pages/list-index/list-index.wxss */
-.list_form {
-  margin-bottom: 15px;
-  margin-left: 25%;
-  margin-right: 10%;
+
+.list-index-page{
+  margin-top: 100rpx;
+}
+
+.list-index-page-navbar {
+  background-color: #fff;
+  display: flex;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 500;
+  border-bottom: solid 1px #efefef;
+}
+
+.list-index-page-navbar__item {
+  color: #2A2A2A;
+  font-size: 28rpx;
+  display: block;
+  position: relative;
+  flex: 1;
+  padding: 4rpx 0 0 0;
+  text-align: center;
+}
+
+.list-index-page-navbar__title {
+  line-height: 80rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+
+.list-index-page-navbar__slider {
+  background-color: #1296db;
+  content: " ";
+  bottom: 0;
+  width: 60rpx;
+  height: 6rpx;
+  margin: auto;
+}
+
+.list-index-page-navbar__slider {
+  background-color: #1296db;
+  content: " ";
+  bottom: 0;
+  width: 60rpx;
+  height: 6rpx;
+  margin: auto;
 }

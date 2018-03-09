@@ -1,6 +1,5 @@
 <template name="today-list-card">
 
-  <view hidden='{{JSON.stringify(today_list) == "{}"}}'>  
   <view>日期：{{today_list.list_date}}</view>
 
   <view wx:for="{{today_list.should_dos}}" wx:for-item="should_do" wx:key="id">
@@ -8,12 +7,7 @@
             data-should-do-id = '{{should_do.id}}'
             disabled = '{{should_do.status == "完成" ? true : false}}'>
   </checkbox>
-  应做：{{should_do.content}}  
-  </view>
-  </view>
-  
-  <view hidden='{{today_list}}'>  
-    请创建今日的清单
+  {{should_do.content}}  
   </view>
 
 

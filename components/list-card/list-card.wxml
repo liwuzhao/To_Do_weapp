@@ -6,6 +6,6 @@
               data-should-do-id = '{{should_do.id}}'
               disabled = '{{should_do.status == "完成" ? true : false}}'>
     </checkbox>
-    应做：{{should_do.content}}  
+    {{should_do.content}}  
     </view>
 </template>

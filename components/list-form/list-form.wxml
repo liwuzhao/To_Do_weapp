@@ -1,0 +1,65 @@
+<template name='list-form'>
+  <form bindsubmit="onFormSubmit">
+    <view class="form-group form-group__body">
+      <view class="form-group form-group__fieldset">
+        <view class="form-group__label">
+          必做
+        </view>
+        <view class="form-group__input">
+          <textarea
+            class="form-group__textarea"
+            name="should_do_first"
+            placeholder="必须完成.."
+            maxlength="140"
+            auto-height='true'
+            value='{{list.should_dos[0].content}}'
+          />
+        </view>
+
+
+      </view>
+      <view class="form-group form-group__fieldset">
+        <view class="form-group__label">
+          应做
+        </view>
+        <view class="form-group__input">
+          <textarea
+            class="form-group__textarea"
+            name="should_do_second"
+            placeholder="应该完成.."
+            maxlength="140"
+            auto-height='true'
+            value='{{list.should_dos[1].content}}'
+          />
+        </view>
+      </view>
+
+      <view class="form-group form-group__fieldset">
+        <view class="form-group__label">
+          可做
+        </view>
+        <view class="form-group__input">
+          <textarea
+            class="form-group__textarea"
+            name="should_do_third"
+            placeholder="还可以完成这个.."
+            maxlength="140"
+            auto-height='true'
+            value='{{list.should_dos[2].content}}'
+          />
+        </view>
+      </view>
+
+      <view class='form-group__hr-line'/>
+
+
+
+    </view>
+
+    <view class="form-group submit-area">
+      <button type="primary" class="submit-area-btn" hover-class="none" formType="submit">
+        提交
+      </button>
+    </view>
+  </form>
+</template>

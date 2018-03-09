@@ -13,19 +13,20 @@ Page({
     lists: [],
     today_list: {},
     activeTabIndex: 0,
-    tabs: ['今日', '历史'],    
+    tabs: ['今日', '历史'],
   },
 
   onLoad: function (options) {
     var that = this;
-    this.FetchDataFromRemoteServer();
+    that.FetchDataFromRemoteServer();
   },
 
   onShow: function () {
-    this.FetchDataFromRemoteServer();
+    var that = this;
+    that.FetchDataFromRemoteServer();
   },
 
-  FetchDataFromRemoteServer: function(){
+  FetchDataFromRemoteServer(){
     if (this.data.activeTabIndex == 0) {
       this.loadTodayList();
     } else if (this.data.activeTabIndex == 1) {
@@ -33,7 +34,7 @@ Page({
     }
   },
 
-  loadHistoryList: function(){
+  loadHistoryList() {
     var that = this;
     api.get({
       path: '/lists',
@@ -48,8 +49,9 @@ Page({
     });
   },
 
-  loadTodayList: function(){
+  loadTodayList(){
     var that = this;
+
     api.get({
       path: '/today_list',
       success: (res) => {
@@ -84,7 +86,7 @@ Page({
   
   },
 
-  tabClick: function(e) {
+  tabClick(e) {
     if (this.data.activeTabIndex == e.currentTarget.id) { return; }
 
     this.setData({
@@ -98,7 +100,7 @@ Page({
     }    
   },
 
-  changeStatus: function(e) {
+  changeStatus(e){
     var that = this;
 
     let lists = that.data.lists;
@@ -126,8 +128,8 @@ Page({
         this.FetchDataFromRemoteServer();
       }
     })
+  },
 
 
 
-  }
 })

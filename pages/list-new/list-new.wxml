@@ -1,25 +1,8 @@
 <!--pages/list-new/list-new.wxml-->
-<view hidden=''>
-<form bindsubmit="onFormSubmit">
+<import src="../../components/list-form/list-form.wxml"/>
 
-  <view class="section">
-    <view class="section__title">应做一:</view>
-    <input type="text" name="should_do_first" value='{{list.should_dos[0].content}}'></input>
+<view class="page">
+  <view class="page__bg">
+    <template is="list-form" data="{{list,ui}}"/>
   </view>
- 
-  <view class="section">
-    <view class="section__title">应做二:</view>
-    <input type="text" name="should_do_second" value='{{list.should_dos[1].content}}'></input>
-  </view>
-
-   <view class="section">
-    <view class="section__title">应做三:</view>
-    <input type="text" name="should_do_third" value='{{list.should_dos[2].content}}'></input>
-  </view>
-
-  <view class="btn-area">
-    <button formType="submit">Submit</button>
-    <button formType="reset">Reset</button>
-  </view>
-</form>
 </view>

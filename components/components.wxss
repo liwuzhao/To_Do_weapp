@@ -1,4 +1,7 @@
 @import './list-card/list-card.wxss';
+@import './list-form/list-form.wxss';
+
+@import './today-list-card/today-list-card.wxss';
 
 .done{
   text-decoration:line-through

@@ -9,7 +9,6 @@ const app = getApp();
 Page({
   data: {
     list: {},
-    has_today_list: false,
     ui: {
       submitting: false
     }    
@@ -20,8 +19,6 @@ Page({
   },
 
   onShow: function() {
-    this.set_has_today_list();
-
     let now = new Date();
     now.setHours(12);
     now.setMinutes(0);
@@ -38,18 +35,6 @@ Page({
 
   onFormSubmit(e) {
     var that = this;
-
-    // 判断是否今天创建过
-    if(this.data.has_today_list){
-      that.resetData(), 
-      wx.showModal({
-        title: '提示',
-        content: '今天已经创建了清单',
-        icon: 'success',
-        duration: 2000
-      })
-      return
-    };
 
     if (that.isFormSubmitting()) { return; };
     that.updateUiBeforeFormSubmit();
@@ -78,7 +63,6 @@ Page({
         list: list
       },
       success: () => {
-        that.resetData();
         this.setData({
           has_today_list: true,
         });
@@ -92,6 +76,7 @@ Page({
         });
       },
       complete: () => {
+        that.resetData();
         that.updateUiAfterFormSubmit();
       }
     });
@@ -99,23 +84,12 @@ Page({
 
   resetData() {
     this.setData({
-      list: {}
+      list: {},
+      ui: {
+        submitting: false
+      }    
     });
     wx.stopPullDownRefresh();
-  },
-
-  set_has_today_list(){
-    var that = this;
-    api.get({
-      path: '/today_list',
-      success: (res) => {
-        if(res.data.today_list){
-          that.setData({
-            'has_today_list': true
-          })
-        }
-      }
-    })
   },
 
   updateUiBeforeFormSubmit() {

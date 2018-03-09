@@ -1,0 +1,137 @@
+
+.form-group {
+
+}
+
+.form-group__fieldset {
+  width: 100%;
+  margin-bottom: 50rpx;
+}
+
+.form-group__fieldset-inline {
+  padding: 10rpx 0;
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.form-group__fieldset-checkbox {
+  padding: 20rpx 0;
+  width: 100%;
+}
+
+.form-group__body {
+  /*display: flex;*/
+  align-items: center;
+  flex-direction: column;
+  padding: 50rpx 44rpx;
+  /*border-bottom: 2rpx solid #eeeeee;*/
+}
+
+.form-group__label {
+  text-align: center;
+  width: 100%;
+  font-size: 26rpx;
+  padding: 10rpx;
+}
+
+.form-group__label-add-icon {
+  padding: 20rpx 0;
+  text-align: center;
+}
+
+.form-group__label-add-icon image {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.form-group__label-inline {
+  text-align: center;
+  font-size: 26rpx;
+}
+
+.form-group__input {
+  font-size: 26rpx;
+  color: #414141;
+}
+
+.form-group__input-inline {
+  flex: 1;
+  font-size: 26rpx;
+  color: #414141;
+}
+
+.form-group__input-inline-picker {
+  text-align: center;
+}
+
+.form-group__textarea {
+  background-color: #fff;
+  min-height: 60rpx;
+  width: auto;
+  padding: 30rpx;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.form-group__priciples-list-item {
+  display: flex;
+  align-items: center;
+  padding: 10rpx 30rpx;
+  margin-bottom: 30rpx;
+  border: solid 1px #B0B0B2;
+  border-radius:10rpx;
+  box-shadow:1px 1px 1px 1px rgba(0, 0, 0, 0.1)
+}
+
+.form-group__priciples-list-item-name {
+  flex: 1;
+  margin: 0 20rpx;
+}
+
+.form-group__priciples-list-item-name-txt {
+  padding: 0 10rpx;
+}
+
+.form-group__add-priciple {
+  padding: 0 30rpx;
+  text-align: right;
+}
+
+.form-group__add-principle-delete-icon {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.form-group__add-principle-add-icon {
+  width: 70rpx;
+  height: 70rpx;
+}
+
+.form-group__hr-line {
+  margin: 5rpx 0;
+  height: 1px;
+  background-color: #B0B0B2;
+}
+
+.submit-area {
+  padding: 30rpx 50rpx;
+}
+
+.submit-area-btn {
+}
+
+.submit-area-btn::after {
+  border: none;
+}
+
+.submit-area-txt {
+  color: #583F2A;
+  font-size: 34rpx;
+}
+
+.form-notice {
+  font-size:26rpx;
+  padding:15rpx 0;
+  color:#aaa;
+}

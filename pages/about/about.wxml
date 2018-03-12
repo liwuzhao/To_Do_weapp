@@ -1,11 +1,11 @@
 <import src="../../components/footer/footer.wxml"/>
 
 <view class="page">
-  <view class="page__bg">
+  <view class="page_bg">
     <view class="user">
-      <image wx:if="{{props.mineStore.me.avatar_url}}"  class="user-avatar" src="{{props.mineStore.me.avatar_url}}" />
+      <image wx:if="{{props.mineStore.me.avatar_url}}" 
+             class="user-avatar" src="{{props.mineStore.me.avatar_url}}" />
       <view class="user-nickname">{{props.mineStore.me.nick_name}}</view>
-
     </view>
   </view>
   <template is="footer"/>

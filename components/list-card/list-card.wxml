@@ -1,11 +1,29 @@
 <template name="list-card">
-    <view>日期：{{list.list_date}}</view>
+  <view class="list_card-wrapper">
+    <view class="list_card">
+      <view class="list_card-top">
+        <view class="list_card-top-user">
+          <image class="user-avatar" src="{{list.user.avatar_url}}" />
+        </view>
+        <view class="list_card-top-listDate">
+          {{list.list_date}}
+        </view>
+      </view>
+      <block wx:for="{{list.should_dos}}" wx:for-item="should_do" wx:key="id">
+        <view class="list_shouldDo">
+          <view class="list_label">
+              <checkbox bindtap='changeStatus'
+                        checked='{{should_do.status == "完成" ? true : false}}'
+                        data-should-do-id = '{{should_do.id}}'
+                        disabled = '{{should_do.status == "完成" ? true : false}}'>
+              {{should_do.category}}</checkbox>
+          </view>
+          <view class="list_card-content">
+            {{should_do.content}}
+          </view>
+        </view>
+      </block>
 
-    <view class="checkbox" wx:for="{{list.should_dos}}" wx:for-item="should_do" wx:key="id">
-    <checkbox bindtap='changeStatus' checked='{{should_do.status == "完成" ? true : false}}'       
-              data-should-do-id = '{{should_do.id}}'
-              disabled = '{{should_do.status == "完成" ? true : false}}'>
-    </checkbox>
-    {{should_do.content}}  
     </view>
+  </view>
 </template>

@@ -1,7 +1,7 @@
 /* pages/list-index/list-index.wxss */
 
 .list-index-page{
-  margin-top: 100rpx;
+  margin-top: 120rpx;
 }
 
 .list-index-page-navbar {

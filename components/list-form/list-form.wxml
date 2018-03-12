@@ -50,14 +50,11 @@
         </view>
       </view>
 
-      <view class='form-group__hr-line'/>
-
-
 
     </view>
 
     <view class="form-group submit-area">
-      <button type="primary" class="submit-area-btn" hover-class="none" formType="submit">
+      <button class="submit-area-btn" hover-class="none" formType="submit">
         提交
       </button>
     </view>

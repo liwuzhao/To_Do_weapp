@@ -1,7 +1,4 @@
 
-.form-group {
-
-}
 
 .form-group__fieldset {
   width: 100%;
@@ -119,6 +116,8 @@
 }
 
 .submit-area-btn {
+  background-color: rgb(49,124,188);
+  color: white;
 }
 
 .submit-area-btn::after {

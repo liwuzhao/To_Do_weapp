@@ -5,12 +5,17 @@ const ShouldDoModel = function (shouldDo) {
 
   mobx.extendObservable(this, {
     content: shouldDo.content,
-    status: shouldDo.status
+    status: shouldDo.status,
+    category: shouldDo.category
   });
 
   this.setContent = function (content) {
     this.content = content;
   };
+
+  this.setCategory = function (category) {
+    this.category = category;
+  }
 
   this.setStatus = function (status){
     this.status = status;

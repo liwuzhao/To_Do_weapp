@@ -44,13 +44,15 @@ Page({
     should_dos.push(e.detail.value.should_do_second);
     should_dos.push(e.detail.value.should_do_third);
 
+    var categories = ['必做', '应做', '可做'];
     for (var i = 0; i < should_dos.length; i++) {
-      this.data.list.setShouldDo({
+      that.data.list.setShouldDo({
         content: should_dos[i],
+        category: categories[i],
         status: "未完成"
       });
     }
-    
+
     let list = that.data.list.toJS();
 
     this.setData({

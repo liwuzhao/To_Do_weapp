@@ -11,9 +11,16 @@ Page({
    */
   data: {
     lists: [],
+    page: 1,
     today_list: {},
     activeTabIndex: 0,
     tabs: ['今日', '历史'],
+    ui: {
+      refreshing: false,
+      loadingMore: false,
+      nodata: false,
+      nomore: false
+    }
   },
 
   onLoad: function (options) {
@@ -34,16 +41,48 @@ Page({
     }
   },
 
+  FetchMoreDataFromRemoteServer(){
+    var that = this;
+    var page = that.data.page;
+    page += 1;
+    api.get({
+      path: '/lists?page=' + page,
+      success: (res) => {
+        let new_lists = res.data.lists;
+        let lists = that.data.lists;
+        lists = lists.concat(new_lists);
+        that.setData({
+          'lists': lists,
+          'page': page,
+          'ui.nodata': lists.length === 0,
+          'ui.nomore': lists.length !== 0 && new_lists.length === 0
+        })
+      },
+      complete: () => {
+        that.setData({
+          'ui.refreshing': false,
+          'ui.loadingMore': false
+        }),
+        wx.stopPullDownRefresh();
+      }
+    });
+  },
+
   loadHistoryList() {
     var that = this;
     api.get({
       path: '/lists',
       success: (res) => {
         that.setData({
-          'lists': res.data.lists
+          'lists': res.data.lists,
+          'ui.nodata': res.data.lists.length === 0
         })
       },
       complete: () => {
+        that.setData({
+          'ui.refreshing': false,
+          'ui.loadingMore': false
+        }),
         wx.stopPullDownRefresh();
       }
     });
@@ -65,26 +104,30 @@ Page({
     });
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
+  onPullDownRefresh() {
+    this.refresh();
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
+  onReachBottom() {
+    if (this.data.ui.nomore) { return; }
+    this.FetchMoreDataFromRemoteServer();
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  isFetching() {
+    return this.data.ui.refreshing || this.data.ui.loadingMore;
   },
+
+  refresh() {
+    if (this.isFetching()) { return; }
+    this.setData({
+      'page': 1,
+      'ui.refreshing': true,
+      'ui.nodata': false,
+      'ui.nomore': false
+    })
+    this.FetchDataFromRemoteServer()
+  },
+
 
   tabClick(e) {
     if (this.data.activeTabIndex == e.currentTarget.id) { return; }

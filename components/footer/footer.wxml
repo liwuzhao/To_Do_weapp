@@ -1,0 +1,5 @@
+<template name="footer">
+  <view class="footer">
+    <view>Designed by WuZhao</view>
+  </view>
+</template>

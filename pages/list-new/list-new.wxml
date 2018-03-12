@@ -1,8 +1,12 @@
 <!--pages/list-new/list-new.wxml-->
 <import src="../../components/list-form/list-form.wxml"/>
+<import src="../../vendor/wux/loading/loading.wxml"/>
+<import src="../../components/footer/footer.wxml"/>
 
 <view class="page">
   <view class="page__bg">
     <template is="list-form" data="{{list,ui}}"/>
   </view>
+  <template is="footer"/>
+
 </view>

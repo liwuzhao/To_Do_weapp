@@ -1,0 +1,13 @@
+.footer {
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 26rpx;
+  color: #e5e5e5;
+  /*border-top: solid 1px #d5d5d5;*/
+  padding: 15rpx 0;
+}
+
+.footer i {
+  font-style: italic;
+}
